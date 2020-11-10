@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: affluent
+      MYSQL_DATABASE: affluent
+    volumes:
+      - ./db-data/mysql:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+    ports:
+      - 3306:3306
+
